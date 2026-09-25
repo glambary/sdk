@@ -1,0 +1,60 @@
+[project]
+name = "sdk"
+version = "0.1.0"
+description = ""
+authors = [
+    {name = "Sergey Khadkevich",email = "s_khadkevich@lesta.group"}
+]
+readme = "README.md"
+requires-python = ">=3.13,<4"
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.dependencies]
+alembic = ">=1"
+sqlalchemy = { version = ">=2", extras = ["asyncio"] }
+pydantic-settings = ">=2"
+click = ">=8"
+
+python-telegram-bot = ">=22"
+telethon = ">=1"
+
+croniter = "^6.2.4"
+qrcode = "^8.2"
+langchain-gigachat = "^0.5.1"
+
+[tool.poetry.group.dev.dependencies]
+isort = "^9"
+ruff = "^0.16"
+deptry = "^0.25"
+mypy = "^2"
+pyright = "^1"
+pytest = "^9"
+pytest-cov = "^7"
+pytest-timeout = "^2"
+pytest-asyncio = "^1"
+
+[tool.poetry]
+package-mode = false
+packages = [{ include = "src" }]
+
+[tool.pytest.ini_options]
+pythonpath = [".", "src", "tests"]
+testpaths = ["tests"]
+asyncio_mode = "auto"
+addopts = "--cov-config=coverage.toml"
+
+[tool.mypy]
+python_version = "3.13"
+mypy_path = ["src"]
+explicit_package_bases = true
+
+[tool.pyright]
+pythonVersion = "3.13"
+include = ["src"]
+exclude = ["**/__pycache__", "**/.venv"]
+
+[tool.deptry]
+ignore = ["DEP003"]

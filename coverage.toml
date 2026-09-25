@@ -1,0 +1,30 @@
+[tool.coverage.run]
+branch = true
+source = ["src"]
+relative_files = true
+data_file = "reports/.coverage"
+omit = [
+  "*/tests/*",
+  "*/migrations/*",
+  "*/__init__.py",
+  "*/settings.py"
+]
+
+[tool.coverage.report]
+#fail_under = 90
+show_missing = true
+skip_empty = true
+exclude_lines = [
+  "pragma: no cover",
+  "if TYPE_CHECKING:",
+  "if __name__ == .__main__.:"
+]
+partial_branches = [
+    "pragma: no partial cover"
+]
+
+[tool.coverage.html]
+directory = "reports/coverage_html"
+
+[tool.coverage.xml]
+output = "reports/coverage.xml"
