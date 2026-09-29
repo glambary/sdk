@@ -1,0 +1,117 @@
+target-version = "py311"
+line-length = 119
+src = ["src", "tests"]
+exclude = [
+    "tests",
+    ".bzr",
+    ".direnv",
+    ".eggs",
+    ".git",
+    ".hg",
+    ".mypy_cache",
+    ".pytest_cache",
+    ".nox",
+    ".pants.d",
+    ".ruff_cache",
+    ".svn",
+    ".tox",
+    ".venv",
+    "__pypackages__",
+    "_build",
+    "buck-out",
+    "build",
+    "dist",
+    "node_modules",
+    "venv",
+    "migration",
+    "migrations",
+    "*.j2",
+    "*.txt",
+]
+
+[format]
+quote-style = "double"  # Like Black, use double quotes for strings.
+indent-style = "space"  # Like Black, indent with spaces, rather than tabs.
+skip-magic-trailing-comma = false  # Like Black, respect magic trailing commas.
+line-ending = "auto"  # Like Black, automatically detect the appropriate line ending.
+
+[lint]
+select = [
+    "E", "W",  # pycodestyle (E, W)
+    "D",  # pydocstyle (D)
+    "F",  # Pyflakes (F)
+    "UP",  # pyupgrade (UP)
+    "C90",  # mccabe (C90)
+    "N",  # pep8-naming (N)
+    "A",  # flake8-builtins (A)
+    "B",  # flake8-bugbear
+    "ANN",  # flake8-annotations (ANN)
+    "S",  # flake8-bandit (S)
+    "C4",  # flake8-comprehensions (C4)
+    "T10",  # flake8-debugger (T10)
+    "T20",  # flake8-print (T20)
+    "Q",  # flake8-quotes (Q)
+    "DJ",  # flake8-django (DJ)
+    "RET",  # flake8-return (RET)
+    "ARG",  # flake8-unused-arguments (ARG)
+    "PTH",  # flake8-use-pathlib (PTH)
+    "PGH",  # pygrep-hooks (PGH)
+    "I",  # imports
+]
+
+ignore = [
+    "D100",
+    "D101",
+    "D102",
+    "D103",
+    "D104",
+    "D105",
+    "D106",
+    "D107",
+    "D200",
+    "D203",
+    "D212",
+    "D400",
+    "D401",
+    "ANN204",
+    "ANN401",
+    "RET503",
+    "RET504",
+]
+
+dummy-variable-rgx = "^(_+|(_+[a-zA-Z0-9_]*[a-zA-Z0-9]+?))$"  # Allow unused variables when underscore-prefixed
+
+# Исключения для линтеров
+[lint.per-file-ignores]
+"tests/**/*.py" = ["S101"]
+
+
+[lint.isort]
+combine-as-imports = true
+lines-after-imports = 2
+lines-between-types = 1
+section-order = [
+    "future",
+    "standard-library",
+    "third-party",
+    "first-party",
+    "local-folder",
+]
+
+[lint.mccabe]
+max-complexity = 10
+
+[lint.flake8-quotes]
+docstring-quotes = "double"
+inline-quotes = "double"
+
+[lint.flake8-bugbear]
+extend-immutable-calls = [
+    "fastapi.Depends",
+    "fastapi.params.Depends",
+    "fastapi.Query",
+    "fastapi.params.Query",
+]
+
+[lint.pydocstyle]
+convention = "google"
